@@ -11,15 +11,16 @@ const THREE = {
   DirectionalLight: class { position = { set() {} } },
   PerspectiveCamera: class { position = { set() {}, x: 0, y: 0, z: 0 }; lookAt() {}; updateProjectionMatrix() {}; aspect = 1 },
   Scene: class { add() {}; background = null },
-  WebGLRenderer: class { setSize() {}; setPixelRatio() {}; render() {}; dispose() {}; setClearColor() {}; domElement = { style: {} } },
+  WebGLRenderer: class { setSize() {}; setPixelRatio() {}; render() {}; dispose() {}; setClearColor() {}; getContext() { return {} }; domElement = { style: {} } },
   Color: class { constructor(public hex = 0) {} },
   PointLight: class { position = { set() {} } },
   Material: class { dispose() {} },
+  Clock: class { getDelta() { return 0.016 }; getElapsedTime() { return 0 }; start() {} },
 }
 
 export default THREE
 export const {
   Vector3, Group, Mesh, MeshLambertMaterial, SphereGeometry,
   ExtrudeGeometry, Shape, Path, AmbientLight, DirectionalLight,
-  PerspectiveCamera, Scene, WebGLRenderer, Color, PointLight, Material,
+  PerspectiveCamera, Scene, WebGLRenderer, Color, PointLight, Material, Clock,
 } = THREE as any

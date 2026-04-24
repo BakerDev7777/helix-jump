@@ -29,7 +29,5 @@ export const ROTATION_SENSITIVITY = 0.012
 
 // Cores das plataformas
 export const RING_COLORS = [
-  '#e63946', '#f4a261', '#2a9d8f', '#e9c46a',
-  '#a855f7', '#06b6d4', '#f97316', '#ec4899',
-  '#84cc16', '#3b82f6',
+  '#22c55e', '#16a34a', '#4ade80', '#15803d', '#86efac',
 ]

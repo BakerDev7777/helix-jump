@@ -39,10 +39,11 @@ export default function GameCanvas({ onScoreChange, onGameOver, gameKey }: GameC
     const pixelRatio = Math.min(window.devicePixelRatio, 2)
     const renderer = new THREE.WebGLRenderer({
       antialias: pixelRatio <= 1,
+      alpha: true,
     })
     renderer.setPixelRatio(pixelRatio)
     renderer.setSize(mount.clientWidth, mount.clientHeight)
-    renderer.setClearColor(0x0d001a)
+    renderer.setClearColor(0x000000, 0)
     mount.appendChild(renderer.domElement)
 
     const scene = new THREE.Scene()

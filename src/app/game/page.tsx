@@ -39,13 +39,23 @@ export default function GamePage() {
   }, [])
 
   return (
-    <div className="relative w-full h-dvh bg-[#0d001a] overflow-hidden">
+    <div
+      className="relative w-full h-dvh overflow-hidden bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "url('/stadium.jpg')", backgroundColor: '#0d4a2a' }}
+    >
       <GameCanvas
         gameKey={gameKey}
         onScoreChange={handleScoreChange}
         onGameOver={handleGameOver}
       />
       <HUD score={score} combo={combo} />
+      {score === 0 && !isGameOver && (
+        <div className="absolute bottom-24 inset-x-0 flex items-center justify-center pointer-events-none select-none">
+          <span className="text-white/80 text-lg font-semibold tracking-widest drop-shadow-lg">
+            ← Arraste →
+          </span>
+        </div>
+      )}
       {isGameOver && (
         <GameOver
           score={finalScore}

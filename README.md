@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Helix Jump
 
-## Getting Started
+Clone do jogo Helix Jump para navegador, com foco em mobile. Construído com Next.js 14, Three.js, e Supabase.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js 14** (App Router)
+- **Three.js** — renderização 3D da torre
+- **Supabase** — autenticação e ranking global
+- **Tailwind CSS** — estilização
+- **Vercel** — deploy
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Como jogar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Arraste horizontalmente para girar a torre
+- Guie a bola pelo buraco de cada plataforma
+- Não toque nas partes coloridas — game over!
+- Combo: passe por várias plataformas seguidas para multiplicar sua pontuação
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup local
 
-## Learn More
+1. Clone o repositório
+2. `npm install`
+3. Crie `.env.local` com suas chaves Supabase:
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-anon-key
+   NEXT_PUBLIC_SITE_URL=http://localhost:3000
+   ```
+4. Execute a migration SQL em `supabase/migrations/001_init.sql` no dashboard Supabase
+5. `npm run dev`
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy no Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Importe o repositório no dashboard Vercel
+2. Adicione as variáveis de ambiente:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `NEXT_PUBLIC_SITE_URL` (sua URL de produção)
+3. Deploy automático via push
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Supabase: Google OAuth
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Em Authentication → Providers → Google:
+- Ative Google OAuth
+- Authorized redirect URI: `https://SEU_PROJETO.supabase.co/auth/v1/callback`

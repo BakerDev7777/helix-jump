@@ -1,3 +1,5 @@
+'use client'
+
 interface GameOverProps {
   score: number
   bestScore: number
@@ -6,42 +8,31 @@ interface GameOverProps {
 }
 
 export default function GameOver({ score, bestScore, onRestart, onHome }: GameOverProps) {
-  const isNewRecord = score > 0 && score >= bestScore
-
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="flex flex-col items-center gap-6 px-8 py-10 rounded-2xl bg-[#1a0533]/90 border border-purple-800 w-80 max-w-[90vw]">
-        <h2 className="text-white text-3xl font-bold">Game Over</h2>
-
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-gray-400 text-sm uppercase tracking-widest">Pontuação</span>
-          <span className="text-white text-6xl font-bold tabular-nums">{score}</span>
-          {isNewRecord && (
-            <span className="text-yellow-400 text-sm font-semibold">🏆 Novo Recorde!</span>
-          )}
-        </div>
-
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-gray-500 text-xs uppercase tracking-widest">Melhor</span>
-          <span className="text-purple-300 text-2xl font-bold tabular-nums">
-            {Math.max(score, bestScore)}
-          </span>
-        </div>
-
-        <button
-          onClick={onRestart}
-          className="w-full py-4 rounded-xl bg-purple-600 hover:bg-purple-500 active:bg-purple-700 text-white text-lg font-bold transition-colors"
-        >
-          Jogar Novamente
-        </button>
-
-        <button
-          onClick={onHome}
-          className="w-full py-3 rounded-xl border border-purple-700 text-purple-300 text-base font-medium hover:bg-purple-900/40 transition-colors"
-        >
-          Início
-        </button>
-      </div>
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center bg-white/92 px-6 py-7 rounded-[22px] shadow-2xl backdrop-blur-md w-[min(360px,calc(100vw-40px))] z-40">
+      <h2 className="mb-2.5 text-[#1a1a2e] text-[32px]">☹</h2>
+      <p className="mb-2 text-[#555] text-lg">
+        <b>Não foi dessa vez.</b>
+      </p>
+      <p className="mb-2 text-[#555] text-lg">Escolha um novo valor e tente novamente.</p>
+      <p className="mb-2 text-[#555] text-lg">
+        Score: <span className="font-bold">{score}</span> • Recorde:{' '}
+        <span className="font-bold">{Math.max(score, bestScore)}</span>
+      </p>
+      <button
+        type="button"
+        onClick={onRestart}
+        className="mt-4 w-full px-4 py-3.5 text-base font-bold text-white bg-[#e91e63] hover:bg-[#c2185b] active:bg-[#c2185b] border-none rounded-[10px] cursor-pointer transition-colors"
+      >
+        Jogar Novamente
+      </button>
+      <button
+        type="button"
+        onClick={onHome}
+        className="mt-2.5 w-full px-4 py-3 text-sm font-medium text-[#555] hover:bg-[#f5f5f5] border border-[#ddd] rounded-[10px] cursor-pointer transition-colors"
+      >
+        Voltar ao painel
+      </button>
     </div>
   )
 }
